@@ -4,6 +4,7 @@ import (
 	"errors"
 	"strconv"
 
+	"github.com/banditmoscow1337/utils/crypto"
 	"github.com/goccy/go-json"
 )
 
@@ -12,12 +13,12 @@ func (t *Telegraph) CreateAccount(names ...string) (err error) {
 
 	switch len(names) {
 	case 0:
-		short = "TODO" //crypto.RandString(16)
+		short = crypto.RandString(16)
 		full = "Anonymous"
 		break
 	case 1:
 		full = names[0]
-		short = "TODO" //crypto.RandString(16)
+		short = crypto.RandString(16)
 		break
 	default:
 		short = names[0]
