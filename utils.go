@@ -36,6 +36,8 @@ func (t *Telegraph) call(uri string, querys []Query, body []byte) (ret []byte, e
 		return
 	}
 
+	req.Header = header
+
 	resp, err = client.Do(req)
 	if err != nil {
 		return
