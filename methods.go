@@ -1,12 +1,67 @@
 package telegraph
 
 import (
+	"bytes"
 	"errors"
+	"io"
+	"mime/multipart"
+	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/banditmoscow1337/utils/crypto"
 	"github.com/goccy/go-json"
 )
+
+func (t *Telegraph) SetImage(data []byte, name string) (string, error) {
+	body := &bytes.Buffer{}
+	writer := multipart.NewWriter(body)
+	part, _ := writer.CreateFormFile("file", name)
+	io.Copy(part, bytes.NewReader(data))
+	writer.Close()
+
+	r, _ := http.NewRequest("POST", "https://telegra.ph/upload", body)
+	r.Header.Add("Content-Type", writer.FormDataContentType())
+	client := &http.Client{}
+	resp, err := client.Do(r)
+	if err != nil {
+		return "", err
+	}
+
+	bod, err := io.ReadAll(resp.Body)
+
+	defer resp.Body.Close()
+	if err != nil {
+		return "", err
+	}
+
+	var res []struct {
+		Src string `json:"src"`
+	}
+
+	if err = json.Unmarshal(bod, &res); err != nil {
+		return "", err
+	}
+
+	if len(res) == 0 {
+		return "", errors.New("file not uploaded")
+	}
+
+	return strings.ReplaceAll(res[0].Src, "/file/", ""), nil
+}
+
+func (t *Telegraph) GetImage(link string) ([]byte, error) {
+	c := &http.Client{}
+	req, _ := http.NewRequest("GET", "https://telegra.ph/file/"+link, nil)
+	resp, err := c.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	return io.ReadAll(resp.Body)
+}
 
 func (t *Telegraph) CreateAccount(names ...string) (err error) {
 	var short, full string
