@@ -291,6 +291,10 @@ func (t *Telegraph) EditPage(op Page, returnConent bool) (np Page, err error) {
 	return
 }
 
+func (t *Telegraph) GetToken() string {
+	return t.a.AccessToken
+}
+
 func (t *Telegraph) RevokeAccessToken(short, author, url string) (a Account, err error) {
 	data, err := t.call("revokeAccessToken", nil, nil)
 	if err != nil {
