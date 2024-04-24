@@ -63,10 +63,3 @@ func (t *Telegraph) call(uri string, querys []Query, body []byte) (ret []byte, e
 
 	return
 }
-
-func Init(token ...string) (t Telegraph, err error) {
-	if len(token) > 0 {
-		t.a.AccessToken = token[0]
-	}
-	return
-}

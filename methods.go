@@ -63,8 +63,10 @@ func (t *Telegraph) GetImage(link string) ([]byte, error) {
 	return io.ReadAll(resp.Body)
 }
 
-func (t *Telegraph) CreateAccount(names ...string) (err error) {
+func CreateAccount(names ...string) (t *Telegraph, err error) {
 	var short, full string
+
+	t = &Telegraph{}
 
 	switch len(names) {
 	case 0:
@@ -140,7 +142,16 @@ func (t *Telegraph) CreatePage(title string, description string, content []NodeE
 	return
 }
 
-func (t *Telegraph) GetAccountInfo() (err error) {
+func GetIntoAccount(token string) (t *Telegraph, err error) {
+	if len(token) == 0 {
+		err = errors.New("token not found")
+		return
+	}
+
+	t = &Telegraph{}
+
+	t.a.AccessToken = token
+
 	data, err := t.call("getAccountInfo", nil, nil)
 	if err != nil {
 		return
