@@ -89,6 +89,8 @@ func CreateAccount(names ...string) (t *Telegraph, err error) {
 
 	err = json.Unmarshal(data, &t.a)
 
+	t.Name = t.a.ShortName
+
 	return
 }
 
@@ -158,6 +160,8 @@ func GetIntoAccount(token string) (t *Telegraph, err error) {
 	}
 
 	err = json.Unmarshal(data, &t.a)
+
+	t.Name = t.a.ShortName
 
 	return
 }
@@ -268,6 +272,8 @@ func (t *Telegraph) EditAccountInfo(short, author, url string) (a Account, err e
 	if err != nil {
 		return
 	}
+
+	t.Name = t.a.ShortName
 
 	return
 }

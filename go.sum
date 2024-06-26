@@ -1,4 +1,8 @@
 github.com/banditmoscow1337/utils v0.1.13 h1:dNxyQpDX37VqzWGvnBwr2A12A8gE18jREigrJWxKm6M=
 github.com/banditmoscow1337/utils v0.1.13/go.mod h1:C5KlDNifhgmNzQgPpF1f5nwuY4jGPDFVX1JdZFVRbPY=
+github.com/banditmoscow1337/utils v1.0.4 h1:xpxwnZpYY5+/NnjBEc0zLeK2Itgd9MUBXnBsVkuQIOQ=
+github.com/banditmoscow1337/utils v1.0.4/go.mod h1:tsKgd3KTYITFLnIJ65HcITzinhXhwiFmagcYh4Fjieg=
 github.com/goccy/go-json v0.10.2 h1:CrxCmQqYDkv1z7lO7Wbh2HN93uovUHgrECaO5ZrCXAU=
 github.com/goccy/go-json v0.10.2/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
+github.com/goccy/go-json v0.10.3 h1:KZ5WoDbxAIgm2HNbYckL0se1fHD6rz5j4ywS6ebzDqA=
+github.com/goccy/go-json v0.10.3/go.mod h1:oq7eo15ShAhp70Anwd5lgX2pLfOS3QCiwU/PULtXL6M=

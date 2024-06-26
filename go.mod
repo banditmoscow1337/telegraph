@@ -1,8 +1,8 @@
 module github.com/banditmoscow1337/telegraph
 
-go 1.22.2
+go 1.22.4
 
 require (
-	github.com/banditmoscow1337/utils v0.1.13
-	github.com/goccy/go-json v0.10.2
+	github.com/banditmoscow1337/utils v1.0.4
+	github.com/goccy/go-json v0.10.3
 )

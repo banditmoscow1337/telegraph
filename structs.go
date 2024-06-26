@@ -55,7 +55,8 @@ type NodeElement struct {
 }
 
 type Telegraph struct {
-	a Account
+	a    Account
+	Name string
 }
 
 type Result struct {
